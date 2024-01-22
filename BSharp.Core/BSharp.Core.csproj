@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>default</LangVersion>
+        <TargetFrameworks>net8.0;netstandard2.1</TargetFrameworks>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
+      <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+    </ItemGroup>
+
+</Project>
