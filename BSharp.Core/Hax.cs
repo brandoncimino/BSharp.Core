@@ -8,17 +8,28 @@ namespace BSharp.Core;
 
 internal static class Hax
 {
+#if NET7_0_OR_GREATER
     /// <inheritdoc cref="CollectionsMarshal.AsSpan{T}"/>
+#else
+    /// <summary>
+    /// Backport of <a href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal.asspan?view=net-8.0#system-runtime-interopservices-collectionsmarshal-asspan-1(system-collections-generic-list((-0)))">CollectionsMarshal.AsSpan&lt;T&gt;(List&lt;T&gt;)</a>.
+    /// </summary>
+#endif
     [Pure]
-    public static Span<T> GetListSpan<T>(List<T> list)
+    public static Span<T> GetListSpan<T>(List<T>? list)
     {
 #if NET7_0_OR_GREATER
         return CollectionsMarshal.AsSpan(list);
     }
 #else
-        return _ListBackingArray(list);
+        return list is null ? default : _ListBackingArray(list);
     }
 
+    /// <summary>
+    /// Uses the hardcore <a href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.unsafeaccessorattribute">[UnsafeAccessor]</a> attribute to access a <see cref="List{T}"/>'s internal backing array directly.
+    /// <p/>
+    /// Only necessary for older .NET versions that don't have access to <a href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal.asspan?view=net-8.0#system-runtime-interopservices-collectionsmarshal-asspan-1(system-collections-generic-list((-0)))">CollectionsMarshal.AsSpan&lt;T&gt;(List&lt;T&gt;)</a>.
+    /// </summary>
     [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
     private static extern T[] _ListBackingArray<T>(List<T> self);
 #endif
@@ -61,7 +72,7 @@ internal static class Hax
 #if NET6_0_OR_GREATER
                 ref char startChar = ref Unsafe.AsRef(in str.GetPinnableReference());
 #else
-                ref char startChar = ref MemoryMarshal.GetReference(str.AsSpan());
+                ref char startChar = ref MemoryMarshal.GetReference<char>(str);
 #endif
                 ref TElem startElem = ref Unsafe.As<char, TElem>(ref startChar);
                 span = MemoryMarshal.CreateReadOnlySpan(ref startElem, str.Length);
