@@ -22,16 +22,20 @@ internal static class Hax
         return CollectionsMarshal.AsSpan(list);
     }
 #else
-        return list is null ? default : _ListBackingArray(list);
-    }
+        // TODO: This is the gross, slow, reflection-based version.
+        // Alternatively, I could use: https://github.com/atcarter714/UnityH4xx/tree/main
+        // ...which even has a similar name to my stuff...!
+        if (list == null)
+        {
+            return default;
+        }
 
-    /// <summary>
-    /// Uses the hardcore <a href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.compilerservices.unsafeaccessorattribute">[UnsafeAccessor]</a> attribute to access a <see cref="List{T}"/>'s internal backing array directly.
-    /// <p/>
-    /// Only necessary for older .NET versions that don't have access to <a href="https://learn.microsoft.com/en-us/dotnet/api/system.runtime.interopservices.collectionsmarshal.asspan?view=net-8.0#system-runtime-interopservices-collectionsmarshal-asspan-1(system-collections-generic-list((-0)))">CollectionsMarshal.AsSpan&lt;T&gt;(List&lt;T&gt;)</a>.
-    /// </summary>
-    [UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
-    private static extern T[] _ListBackingArray<T>(List<T> self);
+        var itemsField = list.GetType().GetField("_items", BindingFlags.Instance | BindingFlags.NonPublic);
+        Debug.Assert(itemsField != null);
+        var itemsArray = (T[])itemsField.GetValue(list);
+        Debug.Assert(itemsArray != null);
+        return itemsArray.AsSpan(0, list.Count);
+    }
 #endif
 
     /// <summary>
