@@ -30,7 +30,8 @@ internal static class Hax
             return default;
         }
 
-        var itemsField = list.GetType().GetField("_items", BindingFlags.Instance | BindingFlags.NonPublic);
+        var itemsField = list.GetType().GetField("_items",
+            System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         Debug.Assert(itemsField != null);
         var itemsArray = (T[])itemsField.GetValue(list);
         Debug.Assert(itemsArray != null);
