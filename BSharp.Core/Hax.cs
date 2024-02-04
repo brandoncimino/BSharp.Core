@@ -1,5 +1,4 @@
 ﻿using System.Collections.Immutable;
-using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using JetBrains.Annotations;
@@ -32,9 +31,9 @@ internal static class Hax
 
         var itemsField = list.GetType().GetField("_items",
             System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-        Debug.Assert(itemsField != null);
+        Bebug.Assert(itemsField != null);
         var itemsArray = (T[])itemsField.GetValue(list);
-        Debug.Assert(itemsArray != null);
+        Bebug.Assert(itemsArray != null);
         return itemsArray.AsSpan(0, list.Count);
     }
 #endif
@@ -72,7 +71,7 @@ internal static class Hax
                 return true;
             case string str:
                 // WE know that `TElem` must be `char`, but the compiler doesn't, so we have to create a span ourselves.
-                Debug.Assert(typeof(TElem) == typeof(char), "How can a string be any other kind of enumerable?!");
+                Bebug.Assert(typeof(TElem) == typeof(char), "How can a string be any other kind of enumerable?!");
 
 #if NET6_0_OR_GREATER
                 ref char startChar = ref Unsafe.AsRef(in str.GetPinnableReference());

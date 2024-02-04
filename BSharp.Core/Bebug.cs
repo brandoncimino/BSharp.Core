@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace BSharp.Core;
@@ -10,7 +11,7 @@ public static class Bebug
 {
     [Conditional("DEBUG")]
     public static void Assert(
-        bool condition,
+        [DoesNotReturnIf(false)] bool condition,
         [CallerArgumentExpression(nameof(condition))]
         string _condition = ""
     )

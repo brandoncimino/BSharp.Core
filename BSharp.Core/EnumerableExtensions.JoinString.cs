@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace BSharp.Core;
@@ -86,7 +85,7 @@ public static class EnumerableExtensions
         ReadOnlySpan<char> suffix
     )
     {
-        Debug.Assert(strings.Length >= 2);
+        Bebug.Assert(strings.Length >= 2);
 
         var lengthFromStrings = GetTotalLength(strings);
 
@@ -106,7 +105,7 @@ public static class EnumerableExtensions
         }
 
         buffer.Write(suffix, ref pos);
-        Debug.Assert(pos == buffer.Length,
+        Bebug.Assert(pos == buffer.Length,
             $"We should have filled the entire buffer ({buffer.Length}), but only wrote {pos} characters!");
         return pos.ToString();
     }
