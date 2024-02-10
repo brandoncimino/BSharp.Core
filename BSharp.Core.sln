@@ -1,9 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSharp.Core", "BSharp.Core\BSharp.Core.csproj", "{0570825A-757C-4E7C-AC6D-A5A5A91AE6DB}"
-	ProjectSection(ProjectDependencies) = postProject
-		{A7A3E69D-8943-49E4-8AC7-9F74D6F89D7C} = {A7A3E69D-8943-49E4-8AC7-9F74D6F89D7C}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BSharp.Core.Tests", "BSharp.Core.Tests\BSharp.Core.Tests.csproj", "{9AA834C1-BCB4-4A2E-A00D-BC77E2EDB7EF}"
 EndProject
