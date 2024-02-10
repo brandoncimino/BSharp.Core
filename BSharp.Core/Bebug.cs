@@ -9,6 +9,11 @@ namespace BSharp.Core;
 /// </summary>
 public static class Bebug
 {
+    /// <inheritdoc cref="Debug.Assert(bool)"/>
+    /// <remarks>
+    /// This is identical to <see cref="Debug.Assert(bool)"/>, but uses the <see cref="CallerArgumentExpressionAttribute"/> for the message.
+    /// </remarks>
+    /// <param name="_condition">see <see cref="CallerArgumentExpressionAttribute"/></param>
     [Conditional("DEBUG")]
     public static void Assert(
         [DoesNotReturnIf(false)] bool condition,
