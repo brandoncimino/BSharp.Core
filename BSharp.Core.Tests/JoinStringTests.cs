@@ -5,7 +5,7 @@ namespace BSharp.Core.Tests;
 public class JoinStringTests
 {
     public static IEnumerable<int> Counts => Enumerable.Range(0, 10);
-    public static IEnumerable<string> Strings => ["", null, "->", " "];
+    public static IEnumerable<string?> Strings => ["", null, "->", " "];
 
     [Test]
     public void JoinString_Simple([ValueSource(nameof(Counts))] int count, [Values] bool enumerateLazily)
