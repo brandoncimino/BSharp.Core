@@ -47,7 +47,7 @@ public static class EnumerableExtensions
         }
 
 
-#if NET7_0_OR_GREATER
+#if NET6_0_OR_GREATER
         return JoinString_InterpolatedHandler<IEnumerable<T>, T>(values, separator, prefix, suffix);
 #else
         return JoinString_StringBuilder(values, separator, prefix, suffix);

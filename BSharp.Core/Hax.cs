@@ -32,7 +32,7 @@ internal static class Hax
         var itemsField = list.GetType().GetField("_items",
             System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
         Bebug.Assert(itemsField != null);
-        var itemsArray = (T[])itemsField.GetValue(list);
+        var itemsArray = (T[]?)itemsField.GetValue(list);
         Bebug.Assert(itemsArray != null);
         return itemsArray.AsSpan(0, list.Count);
     }
