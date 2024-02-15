@@ -5,6 +5,14 @@
         <Nullable>enable</Nullable>
         <LangVersion>default</LangVersion>
         <TargetFrameworks>net8.0;net6.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>BSharp.Core</Title>
+        <Authors>Brandon Cimino</Authors>
+        <Description>Basic C# utilities.</Description>
+        <PackageProjectUrl>https://github.com/brandoncimino/BSharp.Core</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/brandoncimino/BSharp.Core</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>🐣</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
