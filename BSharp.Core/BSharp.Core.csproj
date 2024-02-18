@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <LangVersion>default</LangVersion>
         <TargetFrameworks>net8.0;net6.0;netstandard2.1;netcoreapp3.1</TargetFrameworks>
+        <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>BSharp.Core</Title>
         <Authors>Brandon Cimino</Authors>
@@ -12,6 +13,8 @@
         <PackageProjectUrl>https://github.com/brandoncimino/BSharp.Core</PackageProjectUrl>
         <RepositoryUrl>https://github.com/brandoncimino/BSharp.Core</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageReleaseNotes>🐣</PackageReleaseNotes>
     </PropertyGroup>
 
@@ -21,8 +24,9 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-      <PackageReference Include="JetBrains.Annotations" Version="2023.3.0" />
-      <PackageReference Include="System.Collections.Immutable" Version="8.0.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2023.3.0"/>
+        <PackageReference Include="System.Collections.Immutable" Version="8.0.0"/>
+        <None Include="README.md" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
     <ItemGroup>
